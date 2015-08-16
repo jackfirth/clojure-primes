@@ -3,5 +3,6 @@
             [clojure-primes.core :refer :all]))
 
 (deftest a-test
-  (testing "Example test"
-    (is (= 0 0))))
+  (testing "divisible-by? test"
+    (is (divisible-by? 10 5))
+    (is (not (divisible-by? 10 3)))))
