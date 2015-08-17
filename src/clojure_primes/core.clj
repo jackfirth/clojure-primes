@@ -125,7 +125,42 @@
     (join-matrix-rows row-strings)))
 
 
-(defn print-matrix
-  "Like matrix-string, but prints the string instead of returning it"
-  [cell-print matrix]
-  (print (matrix-string cell-print matrix)))
+(defn add-matrix-headers
+  "Given a corner item, a column header list, a row header list, and a matrix, adds the headers to the matrix"
+  [corner-item column-headers row-headers matrix]
+  (let [matrix-with-column-headers (cons column-headers matrix)
+        row-with-corner-item (cons corner-item row-headers)]
+    (map cons row-with-corner-item matrix-with-column-headers)))
+
+
+(defn justify-format-str
+  "Given a list of items, returns a format string that left-justifies each item based on the max length of the items as strings"
+  [items type left?]
+  (let [items-as-strings (map str items)
+        max-length (apply max (map count items-as-strings))
+        maybe-left (if left? "-" "")]
+    (str "%" maybe-left max-length type)))
+
+
+(defn table-string
+  "Given a list of column headers, a list of row headers, and a matrix, returns a table in string form"
+  [column-headers row-headers matrix]
+  (let [all-items (concat column-headers row-headers (flatten matrix))
+        format-str (justify-format-str all-items "s" false)
+        cell-str (partial format format-str)
+        extended-matrix (add-matrix-headers "" column-headers row-headers matrix)]
+    (matrix-string cell-str extended-matrix)))
+
+
+(defn prime-table-string
+  "Makes a table of the multiplications of the first n primes"
+  [n]
+  (let [primes (reverse (first-n-primes n))
+        matrix (multiplication-table primes primes)]
+    (table-string primes primes matrix)))
+
+
+(defn print-prime-table
+  "Like prime-table-string, but prints it. Adds a newline to avoid trailing nil."
+  [n]
+  (print (str (prime-table-string n) "\n")))

@@ -97,3 +97,29 @@
   (testing "matrix-string should print each cell, seperate cells with bars and rows with dash lines"
     (is (= (matrix-string str '((foo bar) (baz bah) (cat cut)))
            "foo|bar\n-------\nbaz|bah\n-------\ncat|cut"))))
+
+
+(deftest add-matrix-headers-test
+  (testing "add-matrix-headers should add column headers, row headers, and a top left corner empty item to a matrix"
+    (is (= (add-matrix-headers nil '(foo bar) '(baz bah) '((1 2) (3 4)))
+           '((nil foo bar) (baz 1 2) (bah 3 4))))))
+
+
+(deftest justify-format-str-test
+  (testing "justify-format-str should return a format specifier that left justifies based on the length of the items"
+    (is (= (justify-format-str '(1 100 10) "d" true)
+           "%-3d"))
+    (is (= (justify-format-str '(foo barrrr bazz) "s" false)
+           "%6s"))))
+
+
+(deftest table-string-test
+  (testing "table-string should be similar to matrix-string but left-justify items and take column and row headers"
+    (is (= (table-string '(foo bar) '(baz bah) '((1 2) (3 4)))
+           "   |foo|bar\n-----------\nbaz|  1|  2\n-----------\nbah|  3|  4"))))
+
+
+(deftest prime-table-string-test
+  (testing "prime-table-string should be like table-string but with the first n primes"
+    (is (= (prime-table-string 3)
+           "  | 2| 3| 5\n-----------\n 2| 4| 6|10\n-----------\n 3| 6| 9|15\n-----------\n 5|10|15|25"))))
