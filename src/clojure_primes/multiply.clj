@@ -5,7 +5,7 @@
 (defn multiply-each-by
   "Given xs, returns a new list where each element in xs has been multiplied by x"
   [xs x]
-  (map (partial * x) xs))
+  (map (partial *' x) xs))
 
 
 (defn multiplication-table
