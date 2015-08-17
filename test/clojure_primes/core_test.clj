@@ -48,3 +48,15 @@
 (deftest first-n-primes-test
   (testing "first-n-primes should return the first n primes"
     (is (= (first-n-primes 9) '(23 19 17 13 11 7 5 3 2)))))
+
+
+(deftest multiply-each-by-test
+  (testing "multiply-each-by should return each element multiplied by the scalar"
+    (is (= (multiply-each-by '(1 2 3 4 5) 10) '(10 20 30 40 50)))))
+
+
+(deftest multiplication-table-test
+  (testing (str "multiplication-table should return a table of multiplications "
+                "given the column numbers and row numbers")
+    (is (= (multiplication-table '(1 2 3) '(10 100 1000))
+           '((10 20 30) (100 200 300) (1000 2000 3000))))))
