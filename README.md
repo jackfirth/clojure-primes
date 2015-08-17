@@ -1,6 +1,6 @@
 # clojure-primes [![Build Status](https://travis-ci.org/jackfirth/clojure-primes.svg)](https://travis-ci.org/jackfirth/clojure-primes)
 
-Toy problem for getting more comfortable with Clojure build tooling and ecosystems.
+Toy problem for getting more comfortable with Clojure build tooling and ecosystems. Constructs a list of the first `n` primes, then draws a table of multiplying primes by each other prime.
 
 To run, clone the repo and `lein run`. The default app prints a table with the first 15 primes. Built with leiningen 2.x, not tested on leiningen 1.x.
 
