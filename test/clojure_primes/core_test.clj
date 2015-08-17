@@ -60,3 +60,40 @@
                 "given the column numbers and row numbers")
     (is (= (multiplication-table '(1 2 3) '(10 100 1000))
            '((10 20 30) (100 200 300) (1000 2000 3000))))))
+
+
+(deftest matrix-row-string-test
+  (testing (str "matrix-row-string should return the result of calling the "
+                "given print function join with vertical bars")
+    (is (= (matrix-row-string str '(1 2 3 4))
+           "1|2|3|4"))))
+
+
+(deftest string-repeat-test
+  (testing "string-repeat should be like repeat but return a string"
+    (is (= (string-repeat 4 "foo") "foofoofoofoo"))))
+
+
+(deftest single-item-seq?-test
+  (testing "single-item-seq? should be true for single item sequences"
+    (is (single-item-seq? '(1)))
+    (is (not (single-item-seq? '()))
+    (is (not (single-item-seq? '(1 2)))))))
+
+
+(deftest add-between-seq-test
+  (testing "add-between-seq should interleave the between-item into the seq"
+    (is (= (add-between-seq 'a '(1 2 3))
+           '(1 a 2 a 3)))))
+
+
+(deftest join-matrix-rows-test
+  (testing "join-matrix-rows join a list of strings into one string with newlines and dash lines seperating rows"
+    (is (= (join-matrix-rows '("foo|bar" "baz|bah" "cat|cut"))
+           "foo|bar\n-------\nbaz|bah\n-------\ncat|cut"))))
+
+
+(deftest matrix-string-test
+  (testing "matrix-string should print each cell, seperate cells with bars and rows with dash lines"
+    (is (= (matrix-string str '((foo bar) (baz bah) (cat cut)))
+           "foo|bar\n-------\nbaz|bah\n-------\ncat|cut"))))
