@@ -2,11 +2,13 @@
   (:require [clojure.test :refer :all]
             [clojure-primes.core :refer :all]))
 
-(deftest a-test
-  (testing "divisible-by? test"
+(deftest divisible-by?-test
+  (testing "divisible-by? should be true when its second argument divides its first"
     (is (divisible-by? 10 5))
-    (is (not (divisible-by? 10 3))))
-  (testing "divisible-by-any? test"
+    (is (not (divisible-by? 10 3)))))
+
+(deftest divisible-by-any?-test
+  (testing "divisible-by-any? should be true when any number in its second argument divides its first"
     (is (divisible-by-any? 20 '(3 4 5)))
     (is (not (divisible-by-any? 17 '(3 4 5))))))
 
