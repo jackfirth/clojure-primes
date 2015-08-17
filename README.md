@@ -2,7 +2,7 @@
 
 Toy problem for getting more comfortable with Clojure build tooling and ecosystems.
 
-To run, clone the repo and `lein run`. The default app prints a table with the first 15 primes
+To run, clone the repo and `lein run`. The default app prints a table with the first 15 primes. Built with leiningen 2.x, not tested on leiningen 1.x.
 
 To play around with, clone the repo and `lein repl`, then `(print-prime-table 30)` or however many you want to see.
 
