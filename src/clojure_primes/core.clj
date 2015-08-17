@@ -1,7 +1,11 @@
 (ns clojure-primes.core
+  (:use prime-table)
   (:gen-class))
 
 (defn -main
-  "I don't do a whole lot ... yet."
+  "Prints the first 20 primes"
   [& args]
-  (println "Hello, World!"))
+  (print-prime-table the-default-number-of-primes))
+
+
+(def the-default-number-of-primes 20)
