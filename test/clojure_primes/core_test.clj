@@ -1,6 +1,11 @@
 (ns clojure-primes.core-test
-  (:require [clojure.test :refer :all]
-            [clojure-primes.core :refer :all]))
+  (:use clojure.test
+        clojure-primes.core
+        clojure-primes.divide
+        clojure-primes.find-first
+        clojure-primes.ints-from
+        clojure-primes.prime))
+
 
 (deftest divisible-by?-test
   (testing "divisible-by? should be true when its second argument divides its first"
