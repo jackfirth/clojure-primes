@@ -1,18 +1,8 @@
-(ns clojure-primes.core
-  (:use clojure-primes.divide
-        clojure-primes.find-first
-        clojure-primes.ints-from
-        clojure-primes.multiply
-        clojure-primes.prime
-        clojure-primes.seq-util
+(ns clojure-primes.matrix
+  (:use clojure-primes.seq-util
         clojure-primes.string-util)
   (:require [clojure.string :refer [join]])
   (:gen-class))
-
-(defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  (println "Hello, World!"))
 
 
 (defn matrix-row-string
@@ -44,27 +34,3 @@
   (let [matrix-with-column-headers (cons column-headers matrix)
         row-with-corner-item (cons corner-item row-headers)]
     (map cons row-with-corner-item matrix-with-column-headers)))
-
-
-(defn table-string
-  "Given a list of column headers, a list of row headers, and a matrix, returns a table in string form"
-  [column-headers row-headers matrix]
-  (let [all-items (concat column-headers row-headers (flatten matrix))
-        format-str (justify-format-str all-items "s" false)
-        cell-str (partial format format-str)
-        extended-matrix (add-matrix-headers "" column-headers row-headers matrix)]
-    (matrix-string cell-str extended-matrix)))
-
-
-(defn prime-table-string
-  "Makes a table of the multiplications of the first n primes"
-  [n]
-  (let [primes (reverse (first-n-primes n))
-        matrix (multiplication-table primes primes)]
-    (table-string primes primes matrix)))
-
-
-(defn print-prime-table
-  "Like prime-table-string, but prints it. Adds a newline to avoid trailing nil."
-  [n]
-  (print (str (prime-table-string n) "\n")))

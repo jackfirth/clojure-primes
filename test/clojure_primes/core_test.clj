@@ -4,10 +4,13 @@
         clojure-primes.divide
         clojure-primes.find-first
         clojure-primes.ints-from
+        clojure-primes.matrix
         clojure-primes.multiply
         clojure-primes.prime
+        clojure-primes.prime-table
         clojure-primes.seq-util
-        clojure-primes.string-util))
+        clojure-primes.string-util
+        clojure-primes.table-string))
 
 
 (deftest divisible-by?-test
