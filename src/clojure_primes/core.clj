@@ -2,7 +2,10 @@
   (:use clojure-primes.divide
         clojure-primes.find-first
         clojure-primes.ints-from
-        clojure-primes.prime)
+        clojure-primes.multiply
+        clojure-primes.prime
+        clojure-primes.seq-util
+        clojure-primes.string-util)
   (:require [clojure.string :refer [join]])
   (:gen-class))
 
@@ -12,47 +15,11 @@
   (println "Hello, World!"))
 
 
-(defn multiply-each-by
-  "Given xs, returns a new list where each element in xs has been multiplied by x"
-  [xs x]
-  (map (partial * x) xs))
-
-
-(defn multiplication-table
-  "Given two lists of numbers, returns a matrix (list of lists) of multiplications between the lists"
-  [column-numbers row-numbers]
-  (map (partial multiply-each-by column-numbers) row-numbers))
-
-
 (defn matrix-row-string
   "Given a row in a matrix (a list) and a cell printing function, seperates the cells with bars"
   [cell-print row]
   (let [cells (map cell-print row)]
     (join "|" cells)))
-
-
-(defn string-repeat
-  "Like repeat, but for strings. Produces a string instead of a lazy seq"
-  [n str-to-repeat]
-  (apply str (repeat n str-to-repeat)))
-
-
-(defn single-item-seq?
-  "Predicate satisfied by sequences with length of 1"
-  [vs]
-  (cond
-    (empty? vs) false
-    (empty? (rest vs)) true
-    :else false))
-
-
-(defn add-between-seq
-  "Returns a new seq where the element between-item has been inserted between every two elements of vs"
-  [between-item vs]
-  (cond
-    (empty? vs) vs
-    (single-item-seq? vs) vs
-    :else (list* (first vs) between-item (add-between-seq between-item (rest vs)))))
 
 
 (defn join-matrix-rows
@@ -77,15 +44,6 @@
   (let [matrix-with-column-headers (cons column-headers matrix)
         row-with-corner-item (cons corner-item row-headers)]
     (map cons row-with-corner-item matrix-with-column-headers)))
-
-
-(defn justify-format-str
-  "Given a list of items, returns a format string that left-justifies each item based on the max length of the items as strings"
-  [items type left?]
-  (let [items-as-strings (map str items)
-        max-length (apply max (map count items-as-strings))
-        maybe-left (if left? "-" "")]
-    (str "%" maybe-left max-length type)))
 
 
 (defn table-string
